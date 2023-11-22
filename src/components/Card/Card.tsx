@@ -6,15 +6,17 @@ interface Props {
 }
 
 const Card = ({ character }: Props) => {
+  console.log(character);
+
   return (
     <li className={styles.card}>
-      <img
-        src={character.image}
-        alt={character.name}
-        width={50}
-        loading="lazy"
-      />
-      <p>{character.name}</p>
+      <img src={character.image} alt={character.name} loading="lazy" />
+      <div className={styles.wrapper}>
+        <p>Name: {character.name}</p>
+        <p>Species: {character.species || "--"}</p>
+        <p>Type: {character.type || "--"}</p>
+        <p>Gender: {character.gender || "--"}</p>
+      </div>
     </li>
   );
 };

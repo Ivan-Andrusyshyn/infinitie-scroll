@@ -50,7 +50,7 @@ const useCharacter = (paginationUrl: string) => {
     error,
     fetchNextPage,
     status,
-    data,
+    results: data?.results,
   };
 };
 
