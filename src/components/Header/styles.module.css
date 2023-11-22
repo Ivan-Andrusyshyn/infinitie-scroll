@@ -1,0 +1,36 @@
+.header {
+  background: linear-gradient(45deg, #3498db, #2ecc71); /* Градиентный фон */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  animation: gradientAnimation 7s ease infinite;
+
+  background-size: 200% 200%;
+  background-image: linear-gradient(
+    45deg,
+    #3498dbb4,
+    #3498dbc5 25%,
+    #2ecc70af 25%,
+    #2ecc71 50%,
+    #e74c3c 75%,
+    #f39c12 75%,
+    #f39c12
+  );
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
