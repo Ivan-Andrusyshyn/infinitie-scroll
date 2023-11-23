@@ -10,7 +10,7 @@ export interface CharacterData {
   results: CharacterResult[];
 }
 
-const useCharacter = (paginationUrl: string, activeUrl: string) => {
+const useApiData = (paginationUrl: string, activeUrl: string) => {
   const [data, setData] = useState<CharacterData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -56,4 +56,4 @@ const useCharacter = (paginationUrl: string, activeUrl: string) => {
   };
 };
 
-export default useCharacter;
+export default useApiData;

@@ -1,2 +1,2 @@
-export { default as useCharacter } from "./useCharacter";
+export { default as useApiData } from "./useApiData";
 export { default as useObserverTarget } from "./useObserverTarget";

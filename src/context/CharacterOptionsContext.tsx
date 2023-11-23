@@ -3,7 +3,7 @@ import { SingleValue } from "react-select";
 
 import { SelectContextType, SelectedType } from "./type";
 
-import { useCharacter } from "hooks";
+import { useApiData } from "hooks";
 
 interface Props {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ const CharacterOptionsProvider: FC<Props> = ({ children }) => {
     setData,
     fetchNextPage,
     loading,
-  } = useCharacter(`/${activeUrl}/?page=`, activeUrl);
+  } = useApiData(`/${activeUrl}/?page=`, activeUrl);
 
   const handleChange = (
     newValue: SingleValue<{ value: string; label: string }>
