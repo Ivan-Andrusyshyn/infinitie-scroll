@@ -11,7 +11,7 @@ const SelectList: React.FC = () => {
     <Select
       options={activeList}
       onChange={options?.handleChange}
-      placeholder="character"
+      placeholder="cards with character"
     />
   );
 };
