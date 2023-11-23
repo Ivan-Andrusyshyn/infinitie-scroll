@@ -3,7 +3,7 @@ import { FC, useContext, useRef } from "react";
 import { Card } from "components";
 import { Loader } from "components";
 
-import { useObserverTarget } from "hooks";
+import { useObserver } from "hooks";
 import { CharacterOptionsContext } from "context/CharacterOptionsContext";
 
 import { CharacterResult } from "types/type";
@@ -14,7 +14,7 @@ const CardList: FC = () => {
   const observerTarget = useRef(null);
   const options = useContext(CharacterOptionsContext);
   const observedNextPage = options?.fetchNextPage;
-  const observer = useObserverTarget({ observedNextPage, observerTarget });
+  const observer = useObserver({ observedNextPage, observerTarget });
 
   return (
     <ul className={styles.cardList}>
@@ -24,9 +24,10 @@ const CardList: FC = () => {
         ))}
       <li ref={observerTarget} className={styles.observedContainer}>
         {options?.loading && <Loader />}
+        {options?.error && <p>Error: {options?.error}</p>}
       </li>
-      {options?.error && <p>Error: {options?.error}</p>}
     </ul>
   );
 };
+
 export default CardList;

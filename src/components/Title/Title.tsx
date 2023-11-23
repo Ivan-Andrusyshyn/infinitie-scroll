@@ -9,4 +9,5 @@ interface Props {
 const Title: React.FC<Props> = ({ name }) => {
   return <h1 className={styles.title}>{name}</h1>;
 };
+
 export default Title;

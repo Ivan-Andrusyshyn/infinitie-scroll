@@ -1,14 +1,14 @@
 import { MutableRefObject, useEffect } from "react";
 
-interface UseObserverTargetProps {
+interface UseObserverProps {
   observedNextPage: (() => void) | undefined;
   observerTarget: MutableRefObject<HTMLElement | null>;
 }
 
-const useObserverTarget = ({
+const useObserver = ({
   observedNextPage,
   observerTarget,
-}: UseObserverTargetProps) => {
+}: UseObserverProps) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -30,4 +30,4 @@ const useObserverTarget = ({
   }, [observerTarget, observedNextPage]);
 };
 
-export default useObserverTarget;
+export default useObserver;
