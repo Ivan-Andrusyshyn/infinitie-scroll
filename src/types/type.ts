@@ -1,9 +1,9 @@
-export interface ResponseAPI {
+interface ResponseAPI {
   info: Info;
   results: CharacterResult[];
 }
 
-export interface Info {
+interface Info {
   count: number;
   pages: number;
   next: string;
@@ -18,6 +18,8 @@ interface DefaultResult {
   gender: string;
 }
 
-export interface CharacterResult extends DefaultResult {
+interface CharacterResult extends DefaultResult {
   image: string;
 }
+
+export type { ResponseAPI, Info, CharacterResult };

@@ -4,10 +4,11 @@ import { Card } from "components";
 import { Loader } from "components";
 
 import { useObserverTarget } from "hooks";
+import { CharacterOptionsContext } from "context/CharacterOptionsContext";
+
+import { CharacterResult } from "types/type";
 
 import styles from "./styles.module.css";
-import { CharacterOptionsContext } from "context/CharacterOptionsContext";
-import { CharacterResult } from "types/type";
 
 const CardList: FC = () => {
   const observerTarget = useRef(null);

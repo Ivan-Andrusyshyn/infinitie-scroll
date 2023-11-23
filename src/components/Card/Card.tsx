@@ -1,8 +1,9 @@
 import React, { FC, ReactNode, useContext } from "react";
 
 import { CharacterResult } from "types/type";
-import styles from "./styles.module.css";
 import { CharacterOptionsContext } from "context/CharacterOptionsContext";
+
+import styles from "./styles.module.css";
 
 interface Props {
   content: CharacterResult;

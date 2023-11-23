@@ -1,6 +1,6 @@
 import { ResponseAPI } from "types/type";
 
-const paginationUtils = (lastPage: ResponseAPI) => {
+const calculateNextPage = (lastPage: ResponseAPI) => {
   const currentPage = lastPage.info.next
     ? +lastPage.info.next.split("=")[1] + 1
     : 1;
@@ -10,4 +10,4 @@ const paginationUtils = (lastPage: ResponseAPI) => {
   return false;
 };
 
-export default paginationUtils;
+export default calculateNextPage;

@@ -11,4 +11,10 @@ interface SelectContextType {
   error: string | null;
   fetchNextPage: () => void;
 }
-export type { SelectContextType };
+
+interface SelectedType {
+  value: string;
+  label: string;
+}
+
+export type { SelectContextType, SelectedType };

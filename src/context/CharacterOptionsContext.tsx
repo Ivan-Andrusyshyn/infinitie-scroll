@@ -1,15 +1,12 @@
 import React, { FC, createContext, useState } from "react";
 import { SingleValue } from "react-select";
-import { SelectContextType } from "./type";
+
+import { SelectContextType, SelectedType } from "./type";
+
 import { useCharacter } from "hooks";
 
 interface Props {
   children: React.ReactNode;
-}
-
-interface SelectedType {
-  value: string;
-  label: string;
 }
 
 export const CharacterOptionsContext = createContext<SelectContextType | null>(

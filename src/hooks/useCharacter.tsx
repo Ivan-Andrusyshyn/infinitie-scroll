@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+
 import { Info, CharacterResult } from "types/type";
+
 import { fetcher } from "utils/getNextPage";
-import paginationUtils from "utils/paginationUtils";
+import calculateNextPage from "utils/calculateNextPage";
 
 export interface CharacterData {
   info: Info;
@@ -35,7 +37,7 @@ const useCharacter = (paginationUrl: string, activeUrl: string) => {
 
   const fetchNextPage = () => {
     if (!data) return;
-    const nextPageParam = paginationUtils(data);
+    const nextPageParam = calculateNextPage(data);
     if (nextPageParam !== false) {
       fetchCharacters(nextPageParam);
     }
