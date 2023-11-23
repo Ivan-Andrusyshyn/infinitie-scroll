@@ -1,19 +1,19 @@
 import { MutableRefObject, useEffect } from "react";
 
 interface UseObserverTargetProps {
-  fetchNextPage: () => void;
+  observedNextPage: (() => void) | undefined;
   observerTarget: MutableRefObject<HTMLElement | null>;
 }
 
 const useObserverTarget = ({
-  fetchNextPage,
+  observedNextPage,
   observerTarget,
 }: UseObserverTargetProps) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          fetchNextPage();
+          observedNextPage?.();
         }
       },
       { threshold: 1 }
@@ -27,7 +27,7 @@ const useObserverTarget = ({
         observer.unobserve(observerTarget.current);
       }
     };
-  }, [observerTarget, fetchNextPage]);
+  }, [observerTarget, observedNextPage]);
 };
 
 export default useObserverTarget;

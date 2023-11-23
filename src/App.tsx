@@ -1,15 +1,9 @@
 import "./App.css";
 
-import { CardList } from "components";
-import { Header } from "components";
+import { MainLayout } from "layout";
 
 function App() {
-  return (
-    <div className="container">
-      <Header />
-      <CardList />
-    </div>
-  );
+  return <MainLayout />;
 }
 
 export default App;

@@ -1,6 +1,6 @@
 export interface ResponseAPI {
   info: Info;
-  results: Result[];
+  results: CharacterResult[];
 }
 
 export interface Info {
@@ -10,11 +10,14 @@ export interface Info {
   prev: string;
 }
 
-export interface Result {
+interface DefaultResult {
   id: number;
   name: string;
-  image: string;
   species: string;
   type: string;
   gender: string;
+}
+
+export interface CharacterResult extends DefaultResult {
+  image: string;
 }

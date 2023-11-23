@@ -1,21 +1,28 @@
-import { Result } from "types/type";
+import React, { FC, ReactNode, useContext } from "react";
+
+import { CharacterResult } from "types/type";
 import styles from "./styles.module.css";
+import { CharacterOptionsContext } from "context/CharacterOptionsContext";
 
 interface Props {
-  character: Result;
+  content: CharacterResult;
 }
 
-const Card = ({ character }: Props) => {
-  console.log(character);
+const Card: FC<Props> = ({ content }) => {
+  const options = useContext(CharacterOptionsContext);
+
+  const activeList = options?.selected?.value || "character";
 
   return (
     <li className={styles.card}>
-      <img src={character.image} alt={character.name} loading="lazy" />
+      {activeList === "character" && (
+        <img src={content.image} alt={content.name} loading="lazy" />
+      )}
       <div className={styles.wrapper}>
-        <p>Name: {character.name}</p>
-        <p>Species: {character.species || "--"}</p>
-        <p>Type: {character.type || "--"}</p>
-        <p>Gender: {character.gender || "--"}</p>
+        <p>Name: {content.name}</p>
+        <p>Species: {content.species || "--"}</p>
+        <p>Type: {content.type || "--"}</p>
+        <p>Gender: {content.gender || "--"}</p>
       </div>
     </li>
   );

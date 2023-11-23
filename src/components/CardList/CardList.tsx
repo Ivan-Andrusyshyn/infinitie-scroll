@@ -1,28 +1,29 @@
-import { useRef } from "react";
+import { FC, useContext, useRef } from "react";
 
 import { Card } from "components";
 import { Loader } from "components";
 
-import { useCharacter, useObserverTarget } from "hooks";
+import { useObserverTarget } from "hooks";
+
 import styles from "./styles.module.css";
+import { CharacterOptionsContext } from "context/CharacterOptionsContext";
+import { CharacterResult } from "types/type";
 
-const CardList = () => {
-  const { results, error, fetchNextPage, status } =
-    useCharacter("/character/?page=");
-
+const CardList: FC = () => {
   const observerTarget = useRef(null);
-
-  const observer = useObserverTarget({ fetchNextPage, observerTarget });
+  const options = useContext(CharacterOptionsContext);
+  const observedNextPage = options?.fetchNextPage;
+  const observer = useObserverTarget({ observedNextPage, observerTarget });
 
   return (
     <ul className={styles.cardList}>
-      {results &&
-        results.map((character: any) => (
-          <Card key={character.id} character={character} />
+      {options?.results &&
+        options?.results.map((item: CharacterResult) => (
+          <Card key={item.id} content={item} />
         ))}
-      {status && <Loader />}
+      {options?.loading && <Loader />}
       <div ref={observerTarget}></div>
-      {error && <p>Error: {error}</p>}
+      {options?.error && <p>Error: {options?.error}</p>}
     </ul>
   );
 };
