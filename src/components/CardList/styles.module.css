@@ -5,3 +5,8 @@
   list-style: none;
   padding: 15px;
 }
+.observedContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

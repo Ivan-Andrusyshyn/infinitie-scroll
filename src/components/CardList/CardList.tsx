@@ -22,8 +22,9 @@ const CardList: FC = () => {
         options?.results.map((item: CharacterResult) => (
           <Card key={item.id} content={item} />
         ))}
-      {options?.loading && <Loader />}
-      <div ref={observerTarget}></div>
+      <li ref={observerTarget} className={styles.observedContainer}>
+        {options?.loading && <Loader />}
+      </li>
       {options?.error && <p>Error: {options?.error}</p>}
     </ul>
   );
