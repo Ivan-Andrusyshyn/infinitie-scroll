@@ -15,7 +15,7 @@ const useApiData = (paginationUrl: string, activeUrl: string) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchCharacters = async (pageParam: number) => {
+  const fetchData = async (pageParam: number) => {
     try {
       setLoading(true);
       const response = await fetcher(paginationUrl, pageParam);
@@ -37,14 +37,15 @@ const useApiData = (paginationUrl: string, activeUrl: string) => {
 
   const fetchNextPage = () => {
     if (!data) return;
+
     const nextPageParam = calculateNextPage(data);
     if (nextPageParam !== false) {
-      fetchCharacters(nextPageParam);
+      fetchData(nextPageParam);
     }
   };
 
   useEffect(() => {
-    fetchCharacters(1);
+    fetchData(1);
   }, [activeUrl]);
 
   return {
