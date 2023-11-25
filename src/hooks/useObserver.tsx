@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 
 interface UseObserverProps {
   observedNextPage: (() => void) | undefined;
@@ -9,11 +9,16 @@ const useObserver = ({
   observedNextPage,
   observerTarget,
 }: UseObserverProps) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
+          setIsVisible(true);
           observedNextPage?.();
+        } else {
+          setIsVisible(false);
         }
       },
       { threshold: 1 }
@@ -28,6 +33,7 @@ const useObserver = ({
       }
     };
   }, [observerTarget, observedNextPage]);
+  return { isVisible };
 };
 
 export default useObserver;

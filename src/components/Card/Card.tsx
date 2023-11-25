@@ -1,4 +1,11 @@
-import React, { FC, ReactNode, useContext } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 
 import { CharacterResult } from "types/type";
 import { CharacterOptionsContext } from "context/CharacterOptionsContext";
@@ -12,10 +19,10 @@ interface Props {
 const Card: FC<Props> = ({ content }) => {
   const options = useContext(CharacterOptionsContext);
 
-  const activeList = options?.selected?.value || "character";
+  const activeList = options?.selected?.value ?? "character";
 
   return (
-    <li className={styles.card}>
+    <div className={styles.card}>
       {activeList === "character" && (
         <img src={content.image} alt={content.name} loading="lazy" />
       )}
@@ -25,7 +32,7 @@ const Card: FC<Props> = ({ content }) => {
         <p>Type: {content.type || "--"}</p>
         <p>Gender: {content.gender || "--"}</p>
       </div>
-    </li>
+    </div>
   );
 };
 

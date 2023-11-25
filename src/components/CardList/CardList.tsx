@@ -1,4 +1,5 @@
 import { FC, useContext, useRef } from "react";
+import RenderIfVisible from "react-render-if-visible";
 
 import { Card } from "components";
 import { Loader } from "components";
@@ -14,13 +15,23 @@ const CardList: FC = () => {
   const observerTarget = useRef(null);
   const options = useContext(CharacterOptionsContext);
   const observedNextPage = options?.fetchNextPage;
-  const observer = useObserver({ observedNextPage, observerTarget });
+  const { isVisible } = useObserver({ observedNextPage, observerTarget });
+
+  const ESTIMATED_ITEM_HEIGHT = 10;
 
   return (
     <ul className={styles.cardList}>
       {options?.results &&
         options?.results.map((item: CharacterResult) => (
-          <Card key={item.id} content={item} />
+          <RenderIfVisible
+            initialVisible={isVisible}
+            root={document.body}
+            defaultHeight={ESTIMATED_ITEM_HEIGHT}
+            key={item.id}
+            visibleOffset={document.body.clientHeight}
+          >
+            <Card content={item} />
+          </RenderIfVisible>
         ))}
       <li ref={observerTarget} className={styles.observedContainer}>
         {options?.loading && <Loader />}
