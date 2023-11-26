@@ -1,4 +1,4 @@
-import { FC, useContext, useRef } from "react";
+import { FC, useContext, useEffect, useRef } from "react";
 import RenderIfVisible from "react-render-if-visible";
 
 import { Card } from "components";
@@ -17,26 +17,27 @@ const CardList: FC = () => {
   const observedNextPage = options?.fetchNextPage;
   const { isVisible } = useObserver({ observedNextPage, observerTarget });
 
-  const ESTIMATED_ITEM_HEIGHT = 10;
-
+  console.log(options?.results);
   return (
     <ul className={styles.cardList}>
       {options?.results &&
         options?.results.map((item: CharacterResult) => (
           <RenderIfVisible
-            initialVisible={isVisible}
+            initialVisible
+            rootElement={"li"}
             root={document.body}
-            defaultHeight={ESTIMATED_ITEM_HEIGHT}
             key={item.id}
-            visibleOffset={document.body.clientHeight}
+            stayRendered
+            defaultHeight={100}
+            visibleOffset={200}
           >
             <Card content={item} />
           </RenderIfVisible>
         ))}
-      <li ref={observerTarget} className={styles.observedContainer}>
+      <div ref={observerTarget} className={styles.observedContainer}>
         {options?.loading && <Loader />}
         {options?.error && <p>Error: {options?.error}</p>}
-      </li>
+      </div>
     </ul>
   );
 };
